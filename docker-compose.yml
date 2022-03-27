@@ -20,7 +20,7 @@ services:
     container_name: BRS-Service
     restart: on-failure
     ports:
-      - "8080:8080"
+      - "9090:9090"
     environment:
       - MONGODB_PORT=27017
       - MONGODB_SCHEMA=brs
