@@ -1,28 +1,28 @@
 pipeline{
     agent any
     tools { 
-        maven 'maven3'
+        maven 'Maven 3.8.4'
     }
     stages
        {
-          stage("Build")
+           stage("Build")
             {
                 steps{
-                    sh "mvn compile"
+                    sh "mvn -B -DskipTests clean package"
                 }
                 
             }
             stage("Test")
             {
                 steps{
-                    sh "mvn clean test"
+                    sh "mvn test"
                 }
             }
-            stage("Package")
+             stage("Package")
             {
                 steps{
-                    sh "mvn clean package"
+                    sh "mvn package"
                 }
             }
-      }
+       }
 }
