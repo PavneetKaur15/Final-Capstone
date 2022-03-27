@@ -1,5 +1,10 @@
 pipeline{
     agent any
+    environment { 
+        registry = "pavneetkaur15/capstone" 
+        registryCredential = 'jenkins-docker' 
+        dockerImage = '' 
+    }    
     tools { 
         maven 'maven3'
     }
