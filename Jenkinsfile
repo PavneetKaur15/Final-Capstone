@@ -9,6 +9,7 @@ pipeline{
             {
                 steps{
                     sh "mvn compile"
+                    echo "hi"
                 }
                 
             }
@@ -16,6 +17,7 @@ pipeline{
             {
                 steps{
                     sh "mvn clean test"
+                    echo "hi"
                 }
             }
             stage("Package")
