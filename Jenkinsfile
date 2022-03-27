@@ -4,7 +4,7 @@ pipeline{
         registry = "pavneetkaur15/capstone" 
         registryCredential = 'jenkins-docker' 
         dockerImage = '' 
-    }
+    }    
     tools { 
         maven 'maven3'
     }
@@ -14,7 +14,6 @@ pipeline{
             {
                 steps{
                     sh "mvn compile"
-                    echo "hi"
                 }
                 
             }
@@ -22,7 +21,6 @@ pipeline{
             {
                 steps{
                     sh "mvn clean test"
-                    echo "hi"
                 }
             }
             stage("Package")
@@ -31,5 +29,21 @@ pipeline{
                     sh "mvn clean package"
                 }
             }
+            stage('Building our image') { 
+                steps { 
+                    script { 
+                        dockerImage = docker.build registry + ":$GIT_COMMIT-build-BUILD_NUMBER"
+                    }
+                } 
+            }
+            stage('Deploy our image') { 
+                steps { 
+                    script { 
+                        docker.withRegistry( '', registryCredential ) { 
+                            dockerImage.push() 
+                        }
+                    } 
+                }
+            }            
       }
 }
