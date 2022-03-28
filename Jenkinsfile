@@ -47,17 +47,27 @@ pipeline{
                     } 
                 }
             }
-            stage('deploy')
-
-        {
-            steps{
-
-                script{
-
-                 kubernetesDeploy configs: '**/proj-dep.yml', kubeConfig: [path: ''], kubeconfigId: 'kubeconfig', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']  
-
-                }
-            }
-        }
+//            stage('deploy')
+//
+//        {
+//            steps{
+//
+//                script{
+//
+//                 kubernetesDeploy configs: '**/proj-dep.yml', kubeConfig: [path: ''], kubeconfigId: 'kubeconfig', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']  
+//
+//                }
+//            }
+//        }
+           stage("Deploying"){
+                    steps{
+                        withKubeConfig([credentialsId: 'kubeconfig']){
+                            sh 'pwd && ls'
+                            sh 'kubectl apply -f proj-dep.yml'
+                            sh 'kubectl apply -f proj-svc.yml'
+                            sh 'kubectl get all'
+                        }
+                    }
+           }
       }
 }
