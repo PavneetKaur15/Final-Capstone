@@ -47,13 +47,11 @@ pipeline{
                     } 
                 }
             }
-           stage("Deployment-k8s"){
-                    steps{
-                        withKubeConfig([credentialsId: 'my-kube']){
-                            sh 'pwd && ls'
-                            sh 'kubectl apply -f /home/knoldus/proj-svc.yml'
-                            sh 'kubectl apply -f /home/knoldus/proj-dep.yml'
-                            sh 'kubectl get all'
+   //        stage("Deployment----------"){
+//                    steps{
+//                        withKubeConfig([credentialsId: 'my-kube']){
+
+ //                           sh 'kubectl get all'
                         }
                     }
            }
