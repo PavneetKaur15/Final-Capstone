@@ -14,7 +14,7 @@ pipeline{
             {
                 steps{
                     sh "mvn compile"
-                    echo "hi"
+                    //echo "hi"
                 }
                 
             }
