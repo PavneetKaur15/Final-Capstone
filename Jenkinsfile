@@ -50,8 +50,9 @@ pipeline{
            stage("Deployment-k8s"){
                     steps{
                         withKubeConfig([credentialsId: 'my-kube']){
-                            sh 'kubectl apply -f proj-svc.yml'
-                            sh 'kubectl apply -f proj-dep.yml'
+                            sh 'pwd && ls'
+                            sh 'kubectl apply -f /home/knoldus/proj-svc.yml'
+                            sh 'kubectl apply -f /home/knoldus/proj-dep.yml'
                             sh 'kubectl get all'
                         }
                     }
