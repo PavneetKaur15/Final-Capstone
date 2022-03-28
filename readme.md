@@ -36,7 +36,7 @@
 </p>
 
 ## Table of Contents ##
-1. [Philosophy](#Philosophy)
+1. [Philosophy-Pavneet](#Philosophy)
 2. [Medium Articles](#Medium-Articles)
 3. [Spring Boot](#Spring-Boot)
 4. [Application](#Application)
