@@ -24,3 +24,4 @@ COPY --from=maven target/springboot-starterkit-1.0.jar ./
 
 # set the startup command to run your binary
 CMD ["java", "-jar", "./springboot-starterkit-1.0.jar"]
+EXPOSE 9090
