@@ -49,7 +49,7 @@ pipeline{
             }
            stage("Deployment-K8s"){
                     steps{
-                        withKubeConfig([credentialsId: 'kubeconfig']){
+                        withKubeConfig([credentialsId: 'kube-config']){
                             sh 'kubectl get all'
                         }
                     }
