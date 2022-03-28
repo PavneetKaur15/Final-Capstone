@@ -45,12 +45,6 @@ pipeline{
                     } 
                 }
             }
-            stage('Deploy App') {
-                steps {
-                    script {
-                      kubernetesDeploy(configs: "dep.yml", kubeconfigId: "jenkins-kube")
-                    }
-                }
-            }
+
       }
 }
