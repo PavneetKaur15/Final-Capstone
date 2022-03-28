@@ -47,12 +47,14 @@ pipeline{
                     } 
                 }
             }
-           //stage("Deployment------------"){
-                    //steps{
-                        //withKubeConfig([credentialsId: 'my-kube']){
-                            //sh 'kubectl get all'
-                        //}
-                    //}
-           //}
+           stage("Deployment-k8s"){
+                    steps{
+                        withKubeConfig([credentialsId: 'my-kube']){
+                            sh 'kubectl -f apply proj-dep.yml'
+                            sh 'kubectl -f apply proj-svc.yml'
+                            sh 'kubectl get all'
+                        }
+                    }
+           }
       }
 }
