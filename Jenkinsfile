@@ -32,7 +32,7 @@ pipeline{
             stage('Building our image') { 
                 steps { 
                     script { 
-                        dockerImage = docker.build registry + ":$GIT_COMMIT"
+                        dockerImage = docker.build registry + ":$GIT_COMMIT-$BUILD_NUMBER"
                     }
                 } 
             }
