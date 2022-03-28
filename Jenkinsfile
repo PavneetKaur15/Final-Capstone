@@ -46,6 +46,16 @@ pipeline{
                     } 
                 }
             }
+            stage('deploy')
 
+        {
+            steps{
+
+                script{
+
+                 kubernetesDeploy configs: '**/dep.yml', kubeConfig: [path: ''], kubeconfigId: 'kubeconfig', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']  
+
+                }
+            }
       }
 }
