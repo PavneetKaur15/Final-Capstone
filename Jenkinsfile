@@ -53,8 +53,8 @@ pipeline{
 //                        withKubeConfig([credentialsId: 'my-kube']){
 
  //                           sh 'kubectl get all'
-                        }
-                    }
-           }
+       //                 }
+         //           }
+           //}
       }
 }
