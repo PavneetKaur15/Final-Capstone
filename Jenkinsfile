@@ -14,6 +14,7 @@ pipeline{
             {
                 steps{
                     sh "mvn compile"
+                    //echo "hi"
                 }
                 
             }
@@ -29,5 +30,33 @@ pipeline{
                     sh "mvn clean package"
                 }
             }
+            stage('Building our image') { 
+                steps { 
+                    script { 
+                        dockerImage = docker.build registry + ":$GIT_COMMIT-$BUILD_NUMBER"
+                    }
+                } 
+            }
+//            stage('Deploy our image') { 
+//                steps { 
+//                    script { 
+//                        docker.withRegistry( '', registryCredential ) { 
+//                            dockerImage.push() 
+//                            dockerImage.push('latest')
+//                            
+//                        }
+//                    } 
+//                }
+//            }
+          
+   //        stage("Deployment----------"){
+//                    steps{
+//                        withKubeConfig([credentialsId: 'my-kube']){
+
+ //                           sh 'kubectl get all'
+       //                 }
+         //           }
+           //}
       }
 }
+
