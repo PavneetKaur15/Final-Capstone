@@ -37,17 +37,27 @@ pipeline{
                     }
                 } 
             }
-//            stage('Deploy our image') { 
-//                steps { 
-//                    script { 
-//                        docker.withRegistry( '', registryCredential ) { 
-//                            dockerImage.push() 
-//                            dockerImage.push('latest')
-//                            
-//                        }
-//                    } 
-//                }
-//            }
+            stage('Deploy our image') { 
+                steps { 
+                    script { 
+                        docker.withRegistry( '', registryCredential ) { 
+                            dockerImage.push() 
+                            dockerImage.push('latest')
+                            
+                        }
+                    } 
+                }
+            }
+            stage("Deployment-k8s"){
+                    steps{
+                        withKubeConfig([credentialsId: 'my-kube']){
+                            sh 'pwd && ls'
+                            sh 'kubectl apply -f /home/knoldus/proj-svc.yml'
+                            sh 'kubectl apply -f /home/knoldus/proj-dep.yml'
+                            sh 'kubectl get all'
+                        }
+                    }
+           }
           
    //        stage("Deployment----------"){
 //                    steps{
