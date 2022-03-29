@@ -37,17 +37,17 @@ pipeline{
                     }
                 } 
             }
-            stage('Deploy our image') { 
-                steps { 
-                    script { 
-                        docker.withRegistry( '', registryCredential ) { 
-                            dockerImage.push() 
-                            dockerImage.push('latest')
-                            
-                        }
-                    } 
-                }
-            }
+//            stage('Deploy our image') { 
+//                steps { 
+//                    script { 
+//                        docker.withRegistry( '', registryCredential ) { 
+//                            dockerImage.push() 
+//                            dockerImage.push('latest')
+//                            
+//                        }
+//                    } 
+//                }
+//            }
           
    //        stage("Deployment----------"){
 //                    steps{
